@@ -3,43 +3,31 @@
     "categoria": "Actas",
     "items": [
       {
-        "titulo": "Acta Sesión Ordinaria — Marzo 2025",
-        "descripcion": "Registro de acuerdos y discusiones de la sesión ordinaria de marzo.",
-        "url": "#",
-        "tipo": "PDF"
-      },
-      {
-        "titulo": "Acta Sesión Ordinaria — Abril 2025",
-        "descripcion": "Registro de acuerdos y discusiones de la sesión ordinaria de abril.",
-        "url": "#",
+        "titulo": "Actas Consejo Académico 2026",
+        "descripcion": "Registros de acuerdos y discusiones de las sesiones del Consejo Académico.",
+        "url": "https://uccl0-my.sharepoint.com/:f:/r/personal/rporcile_uc_cl/Documents/Consejo%20Acad%C3%A9mico%202026/Actas?csf=1&web=1&e=nLwYHX",
         "tipo": "PDF"
       }
     ]
   },
   {
-    "categoria": "Reglamentos",
+    "categoria": "Asistencia y Votaciones",
     "items": [
       {
-        "titulo": "Reglamento del Estudiante UC",
-        "descripcion": "Normativa general que regula los derechos y deberes de los estudiantes.",
-        "url": "#",
-        "tipo": "PDF"
-      },
-      {
-        "titulo": "Estatutos de la Federación de Estudiantes",
-        "descripcion": "Documento fundacional de la FEUC y sus instancias representativas.",
-        "url": "#",
-        "tipo": "PDF"
+        "titulo": "Asistencias y Votaciones 2026",
+        "descripcion": "Registro de asistencia y resultados de votaciones del Consejo Académico.",
+        "url": "https://uccl0-my.sharepoint.com/:f:/r/personal/rporcile_uc_cl/Documents/Consejo%20Acad%C3%A9mico%202026/Asistencias-Votaciones?csf=1&web=1&e=CKin8a",
+        "tipo": "XLSX"
       }
     ]
   },
   {
-    "categoria": "Informes",
+    "categoria": "Estatutos",
     "items": [
       {
-        "titulo": "Informe de Gestión 2024",
-        "descripcion": "Balance de las actividades y logros de la Consejería Superior durante 2024.",
-        "url": "#",
+        "titulo": "Estatutos Consejo Académico 2026",
+        "descripcion": "Documentos estatutarios del Consejo Académico.",
+        "url": "https://uccl0-my.sharepoint.com/:f:/r/personal/rporcile_uc_cl/Documents/Consejo%20Acad%C3%A9mico%202026/Estatutos?csf=1&web=1&e=KjdoEi",
         "tipo": "PDF"
       }
     ]
