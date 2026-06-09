@@ -1,6 +1,25 @@
 [
   {
-    "categoria": "Sesiones",
+    "categoria": "Cápsulas",
+    "items": [
+      {
+        "titulo": "Cápsulas MAT1610",
+        "descripcion": "Playlist completa con todas las transmisiones del año 2025.",
+        "youtubeId": "PLIcPrPFs_D4Lj4Y4UAI-PAYdbdLBNiw3A",
+        "firstVideoId": "Y4oWuLMDtnc",
+        "tipo": "playlist"
+      },
+      {
+        "titulo": "Cápsulas Ciencias de Datos",
+        "descripcion": "Playlist completa con todas las transmisiones del año 2025.",
+        "youtubeId": "PLIcPrPFs_D4JI1y7x0yOPpnbAVl3zRP48",
+        "firstVideoId": "Y4oWuLMDtnc",
+        "tipo": "playlist"
+      }
+    ]
+  },
+  {
+    "categoria": "Podcasts",
     "items": [
       {
         "titulo": "CS Dialoga",
@@ -13,18 +32,6 @@
         "descripcion": "Podcast de la Consejo Superior.",
         "youtubeId": "jWgUe0_v_hs",
         "tipo": "video"
-      }
-    ]
-  },
-  {
-    "categoria": "Listas de reproducción",
-    "items": [
-      {
-        "titulo": "Cápsulas MAT1610",
-        "descripcion": "Playlist completa con todas las transmisiones del año 2025.",
-        "youtubeId": "PLIcPrPFs_D4Lj4Y4UAI-PAYdbdLBNiw3A",
-        "firstVideoId": "Y4oWuLMDtnc",
-        "tipo": "playlist"
       }
     ]
   }
