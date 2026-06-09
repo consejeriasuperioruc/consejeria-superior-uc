@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import documentos from "../data/documentos.json";
+
+const typeColors: Record<string, string> = {
+  PDF:   "#EF4444",
+  DOCX:  "#2272BC",
+  XLSX:  "#16A34A",
+  PPTX:  "#EA580C",
+};
+---
+
+<Layout title="Documentos" description="Accede a los documentos oficiales de la Consejería Superior UC.">
+
+  <!-- Page header -->
+  <section class="py-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">Documentos</h1>
+      <p class="text-white/80 text-lg">Actas, reglamentos, informes y documentación oficial.</p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 py-16 space-y-12">
+    {documentos.map(({ categoria, items }) => (
+      <section>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-1 h-7 rounded-full" style="background: #8452B1;"></div>
+          <h2 class="text-xl font-bold" style="color: #364FAB;">{categoria}</h2>
+        </div>
+
+        <ul class="space-y-3">
+          {items.map(({ titulo, descripcion, url, tipo }) => {
+            const color = typeColors[tipo] ?? "#6B7280";
+            return (
+              <li>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-start gap-4 p-5 rounded-2xl border border-gray-100 shadow-sm bg-white hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <!-- File icon -->
+                  <div class="flex-shrink-0 w-10 h-12 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={`background: ${color};`}>
+                    {tipo}
+                  </div>
+
+                  <!-- Info -->
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-800 group-hover:text-brand-navy transition-colors truncate">{titulo}</p>
+                    {descripcion && (
+                      <p class="text-gray-500 text-sm mt-0.5 leading-relaxed">{descripcion}</p>
+                    )}
+                  </div>
+
+                  <!-- Arrow -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-5 w-5 text-gray-300 group-hover:text-brand-purple group-hover:translate-x-1 transition-all mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Layout>

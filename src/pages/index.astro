@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const cards = [
+  {
+    href: `${base}sobre-nosotros`,
+    title: "Sobre Nosotros",
+    description: "Conoce quiénes somos, nuestra misión y el equipo detrás de la Consejería Superior.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    accent: "#2272BC",
+    bg: "#EEF4FB",
+  },
+  {
+    href: `${base}documentos`,
+    title: "Documentos",
+    description: "Accede a actas, asistencia, cuentas públicas y toda la documentación oficial.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+    accent: "#8452B1",
+    bg: "#F5EFF9",
+  },
+  {
+    href: `${base}videos`,
+    title: "Videos",
+    description: "Mira nuestros podcasts y cápsulas de estudio en YouTube.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
+    accent: "#BF7CF9",
+    bg: "#FAF4FF",
+  },
+];
+---
+
+<Layout title="Inicio">
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-24 px-4 text-white text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 60%, #BF7CF9 100%);">
+    <!-- Decorative blobs -->
+    <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full opacity-20" style="background: #F7C0FF; filter: blur(60px);"></div>
+    <div class="absolute -bottom-16 -right-16 w-80 h-80 rounded-full opacity-20" style="background: #F8E7A4; filter: blur(80px);"></div>
+
+    <div class="relative max-w-3xl mx-auto">
+      <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-widest uppercase mb-6" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);">
+        Representación Estudiantil
+      </span>
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+        Consejería Superior<br />
+        <span style="color: #F8E7A4;">UC</span>
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10">
+        Representamos a los estudiantes de la Pontificia Universidad Católica de Chile ante sus máximas instancias de gobierno.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`${base}sobre-nosotros`} class="px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:scale-105" style="background: white; color: #364FAB;">
+          Conoce más
+        </a>
+        <a href={`${base}documentos`} class="px-6 py-3 rounded-xl font-semibold text-sm border border-white/40 text-white hover:bg-white/10 transition-all hover:scale-105">
+          Ver documentos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <h2 class="text-2xl font-bold text-center mb-2" style="color: #364FAB;">¿Qué encontrarás aquí?</h2>
+    <p class="text-gray-500 text-center mb-12 text-sm">Toda la información de tu consejería en un solo lugar.</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {cards.map(({ href, title, description, icon, accent, bg }) => (
+        <a
+          href={href}
+          class="group flex flex-col rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1"
+          style={`background: ${bg};`}
+        >
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={`background: ${accent}22; color: ${accent};`} set:html={icon} />
+          <h3 class="text-lg font-bold mb-2" style={`color: ${accent};`}>{title}</h3>
+          <p class="text-gray-600 text-sm leading-relaxed flex-1">{description}</p>
+          <span class="mt-5 text-xs font-semibold flex items-center gap-1 transition-gap" style={`color: ${accent};`}>
+            Ver más
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

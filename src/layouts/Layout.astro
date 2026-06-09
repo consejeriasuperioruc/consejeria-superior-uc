@@ -1,0 +1,131 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Consejería Superior UC — Representación estudiantil universitaria",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const navLinks = [
+  { href: base,                        label: "Inicio" },
+  { href: `${base}sobre-nosotros`,     label: "Sobre Nosotros" },
+  { href: `${base}documentos`,         label: "Documentos" },
+  { href: `${base}videos`,             label: "Videos" },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{title} | Consejería Superior UC</title>
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-white text-gray-800 font-sans">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 shadow-lg" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+      <nav class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href={base} class="flex items-center gap-3 text-white hover:opacity-90 transition-opacity">
+          <img src={`${base}logo.png`} alt="Consejería Superior UC" class="h-10 w-auto" />
+          <div class="leading-tight">
+            <p class="text-sm font-bold tracking-wide">Consejería Superior</p>
+            <p class="text-xs font-normal opacity-75">Pontificia Universidad Católica</p>
+          </div>
+        </a>
+
+        <!-- Mobile menu button -->
+        <button id="menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Abrir menú">
+          <svg id="icon-open"  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-1">
+          {navLinks.map(({ href, label }) => {
+            const isActive = href === base
+              ? currentPath === base || currentPath === base.replace(/\/$/, "")
+              : currentPath.startsWith(href);
+            return (
+              <li>
+                <a
+                  href={href}
+                  class={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    isActive
+                      ? "bg-white/25 text-white shadow-inner"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <!-- Mobile dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-white/20 px-4 py-2">
+        <ul class="flex flex-col gap-1">
+          {navLinks.map(({ href, label }) => {
+            const isActive = href === base
+              ? currentPath === base || currentPath === base.replace(/\/$/, "")
+              : currentPath.startsWith(href);
+            return (
+              <li>
+                <a
+                  href={href}
+                  class={`block px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    isActive
+                      ? "bg-white/25 text-white"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-white/80 text-sm py-6 px-4 text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+      <p class="font-medium text-white">Consejería Superior UC</p>
+      <p class="mt-1 text-xs opacity-75">Pontificia Universidad Católica de Chile · {new Date().getFullYear()}</p>
+    </footer>
+
+    <script>
+      const btn  = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const iconOpen  = document.getElementById("icon-open");
+      const iconClose = document.getElementById("icon-close");
+
+      btn?.addEventListener("click", () => {
+        const open = menu?.classList.toggle("hidden") === false;
+        iconOpen?.classList.toggle("hidden", open);
+        iconClose?.classList.toggle("hidden", !open);
+      });
+    </script>
+  </body>
+</html>

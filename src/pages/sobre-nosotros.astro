@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const consejeros = [
+  { nombre: "Exy Garay", cargo: "Consejera Superior", facultad: "Ingeniería Civil" },
+  { nombre: "Dora Garate", cargo: "Sub Consejera Superior", facultad: "Letras Hispánicas" },
+];
+---
+
+<Layout title="Sobre Nosotros" description="Conoce quiénes somos y qué hacemos en la Consejería Superior UC.">
+
+  <!-- Page header -->
+  <section class="py-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">Sobre Nosotros</h1>
+      <p class="text-white/80 text-lg">Conoce quiénes somos, qué hacemos y por qué lo hacemos.</p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 py-16 space-y-16">
+
+    <!-- Quiénes somos -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 rounded-full" style="background: #2272BC;"></div>
+        <h2 class="text-2xl font-bold" style="color: #364FAB;">¿Quiénes somos?</h2>
+      </div>
+      <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
+        <p>
+          La Consejería Superior es el espacio máximo de representación académica de los estudiantes de la UC
+        </p>
+        <p>
+          Es electa democráticamente por los estudiantes y tiene como misión velar por los estudiantes de toda la UC
+        </p>
+      </div>
+    </section>
+
+    <!-- Misión -->
+    <section class="rounded-2xl p-8" style="background: linear-gradient(135deg, #EEF4FB, #F5EFF9);">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 rounded-full" style="background: #8452B1;"></div>
+        <h2 class="text-2xl font-bold" style="color: #8452B1;">Nuestra Misión</h2>
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        Representar a los estudiantes de la UC con transparencia, compromiso y trabajo colectivo, asegurando que su voz esté presente en las decisiones que marcan el rumbo de la universidad.
+      </p>
+    </section>
+
+    <!-- Qué hacemos -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 rounded-full" style="background: #BF7CF9;"></div>
+        <h2 class="text-2xl font-bold" style="color: #364FAB;">¿Qué hacemos?</h2>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-4">
+        {[
+          "Participamos con derecho a voz en el Consejo Superior.",
+          "Representamos a todos los estudiantes de pregrado",
+          "Realizamos actividades de apoyo académico y espacios de distención",
+          "Difundimos información relevante de manera oportuna y transparente.",
+          "Trabajamos junto a otras instancias de representación estudiantil.",
+          "Elaboramos propuestas e iniciativas en favor del estudiantado.",
+        ].map((item) => (
+          <li class="flex items-start gap-3 p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold" style="background: #BF7CF9;">✓</span>
+            <span class="text-gray-600 text-sm leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Consejeros -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 rounded-full" style="background: #2272BC;"></div>
+        <h2 class="text-2xl font-bold" style="color: #364FAB;">Consejería Superior</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {consejeros.map(({ nombre, cargo, facultad }) => (
+          <div class="rounded-2xl p-5 border border-gray-100 shadow-sm bg-white text-center">
+            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-xl font-bold" style="background: linear-gradient(135deg, #364FAB, #8452B1);">
+              {nombre.charAt(0)}
+            </div>
+            <p class="font-semibold text-gray-800 text-sm">{nombre}</p>
+            <p class="text-xs mt-1 font-medium" style="color: #8452B1;">{cargo}</p>
+            <p class="text-xs text-gray-400 mt-0.5">{facultad}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>

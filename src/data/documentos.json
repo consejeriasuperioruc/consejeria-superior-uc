@@ -1,0 +1,47 @@
+[
+  {
+    "categoria": "Actas",
+    "items": [
+      {
+        "titulo": "Acta Sesión Ordinaria — Marzo 2025",
+        "descripcion": "Registro de acuerdos y discusiones de la sesión ordinaria de marzo.",
+        "url": "#",
+        "tipo": "PDF"
+      },
+      {
+        "titulo": "Acta Sesión Ordinaria — Abril 2025",
+        "descripcion": "Registro de acuerdos y discusiones de la sesión ordinaria de abril.",
+        "url": "#",
+        "tipo": "PDF"
+      }
+    ]
+  },
+  {
+    "categoria": "Reglamentos",
+    "items": [
+      {
+        "titulo": "Reglamento del Estudiante UC",
+        "descripcion": "Normativa general que regula los derechos y deberes de los estudiantes.",
+        "url": "#",
+        "tipo": "PDF"
+      },
+      {
+        "titulo": "Estatutos de la Federación de Estudiantes",
+        "descripcion": "Documento fundacional de la FEUC y sus instancias representativas.",
+        "url": "#",
+        "tipo": "PDF"
+      }
+    ]
+  },
+  {
+    "categoria": "Informes",
+    "items": [
+      {
+        "titulo": "Informe de Gestión 2024",
+        "descripcion": "Balance de las actividades y logros de la Consejería Superior durante 2024.",
+        "url": "#",
+        "tipo": "PDF"
+      }
+    ]
+  }
+]
