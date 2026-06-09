@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 
 const consejeros = [
-  { nombre: "Exy Garay", cargo: "Consejera Superior", facultad: "Ingeniería Civil" },
-  { nombre: "Dora Garate", cargo: "Sub Consejera Superior", facultad: "Letras Hispánicas" },
+  { nombre: "Exy Garay Pereira", cargo: "Consejera Superior", facultad: "Ingeniería Civil", imagen: "/exy.jpeg" },
+  { nombre: "Dora Garate", cargo: "Sub Consejera Superior", facultad: "Letras Hispánicas", imagen: "/dora.jpg" },
 ];
 ---
 
@@ -76,11 +76,16 @@ const consejeros = [
         <h2 class="text-2xl font-bold" style="color: #364FAB;">Consejería Superior</h2>
       </div>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {consejeros.map(({ nombre, cargo, facultad }) => (
+        {consejeros.map(({ nombre, cargo, facultad, imagen }) => (
           <div class="rounded-2xl p-5 border border-gray-100 shadow-sm bg-white text-center">
-            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-xl font-bold" style="background: linear-gradient(135deg, #364FAB, #8452B1);">
-              {nombre.charAt(0)}
-            </div>
+            {imagen ? (
+              <img src={imagen} alt={nombre} class="w-16 h-16 rounded-full mx-auto mb-3 object-cover" />
+            ) : (
+              <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-xl font-bold" style="background: linear-gradient(135deg, #364FAB, #8452B1);">
+                {nombre.charAt(0)}
+              </div>
+            )}
+
             <p class="font-semibold text-gray-800 text-sm">{nombre}</p>
             <p class="text-xs mt-1 font-medium" style="color: #8452B1;">{cargo}</p>
             <p class="text-xs text-gray-400 mt-0.5">{facultad}</p>
