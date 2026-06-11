@@ -1,0 +1,149 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const carreras = [
+  { carrera: "Actuación", instagram: "cetra.uc", consejeria: "Carla Vocar", subconsejeria: "" },
+  { carrera: "Administración Pública", instagram: "caapuc.egb", consejeria: "Valentina Fraile", subconsejeria: "Valentina Díaz" },
+  { carrera: "Agronomía y Forestal", instagram: "consejeria_caaif", consejeria: "Benjamín de las Heras", subconsejeria: "Magdalena Lorca (coordinadora)" },
+  { carrera: "Antropología", instagram: "ca.anarquc", consejeria: "Matilde Cazés", subconsejeria: "" },
+  { carrera: "Arqueología", instagram: "ca.anarquc", consejeria: "Rocío Cornejo", subconsejeria: "" },
+  { carrera: "Arquitectura", instagram: "caarq.uc", consejeria: "Isidora Briceño", subconsejeria: "" },
+  { carrera: "Arte", instagram: "ceearte", consejeria: "Millaray Saballa", subconsejeria: "" },
+  { carrera: "Astronomía", instagram: "ccaa_astro", consejeria: "Paz Belén Oyarce Soudre", subconsejeria: "Javiera Isidora Soto Castillo" },
+  { carrera: "Biología", instagram: "cacb_uc", consejeria: "Cristobal Ordenes", subconsejeria: "Ranran Saito" },
+  { carrera: "Biología Marina", instagram: "cacb_uc", consejeria: "Noemí Serrano", subconsejeria: "Gabriela Rico" },
+  { carrera: "Bioquímica", instagram: "cacb_uc", consejeria: "Vicente Villalobos", subconsejeria: "" },
+  { carrera: "Ciencia Política", instagram: "consjeriaacademicacp", consejeria: "Sofía Beatriz Rojas Espinosa", subconsejeria: "Fernanda Paz Flores Rojas" },
+  { carrera: "Ciencias de Datos", instagram: "ca_licd", consejeria: "Francisca Yepsen", subconsejeria: "Cristóbal Andrés Soto" },
+  { carrera: "College AAHH", instagram: "consejeria_college_aahh", consejeria: "María Jesús Quintana", subconsejeria: "Elena Fuenzalida" },
+  { carrera: "College CCNN", instagram: "consejeria_college_ccnn", consejeria: "Javier Vargas", subconsejeria: "Cristóbal Celis" },
+  { carrera: "College CCSS", instagram: "consejeria_college_ccss", consejeria: "Emily Yorston", subconsejeria: "Valentina Mujica" },
+  { carrera: "Construcción Civil", instagram: "ca.ccuc", consejeria: "Catalina Marimán", subconsejeria: "Cristóbal Mena" },
+  { carrera: "Derecho", instagram: "consejeria_derechouc", consejeria: "Mateo Cruzatt", subconsejeria: "Josefina Doxrud Aldunate" },
+  { carrera: "Dirección Audiovisual", instagram: "rac_dav", consejeria: "Bastian Villa Marty", subconsejeria: "Sahien Hernández" },
+  { carrera: "Diseño", instagram: "cadiseño.uc", consejeria: "Vicente Barria (Xito)", subconsejeria: "Florencia García Pardo" },
+  { carrera: "Enfermería", instagram: "caenf.uc", consejeria: "Emilia Förster Barrientos", subconsejeria: "Javi Valenzuela" },
+  { carrera: "Estética", instagram: "ceest_uc", consejeria: "", subconsejeria: "" },
+  { carrera: "Estudios Urbanos", instagram: "cepu_uc", consejeria: "", subconsejeria: "" },
+  { carrera: "Filosofía", instagram: "cafilosofia.uc", consejeria: "Renato Figueroa", subconsejeria: "" },
+  { carrera: "Física", instagram: "ca.fispuc", consejeria: "Ignacio Tapia", subconsejeria: "Marisol Arias" },
+  { carrera: "Fonoaudiología", instagram: "consejeriafonouc", consejeria: "Anabella Nadales", subconsejeria: "Sofía Cárdenas" },
+  { carrera: "Geografía", instagram: "ca_geouc", consejeria: "Beatriz Cifuentes", subconsejeria: "Matias Malebrán" },
+  { carrera: "Historia", instagram: "cahi.uc", consejeria: "Cristobal Saavedra", subconsejeria: "Gabriela Barraza" },
+  { carrera: "Ingeniería", instagram: "consejeria_inguc", consejeria: "Matías Muñoz", subconsejeria: "Magdalena Schwarz" },
+  { carrera: "Ingeniería Comercial", instagram: "consejeria_comercialuc", consejeria: "Carlos Pinto", subconsejeria: "Javiera Caceres" },
+  { carrera: "Ingeniería en Recursos Naturales", instagram: "ca.rrnnuc", consejeria: "Mateo Torres", subconsejeria: "Beatriz Bucchi" },
+  { carrera: "Kinesiología", instagram: "cek_uc", consejeria: "Benjamín Guajardo", subconsejeria: "" },
+  { carrera: "Letras Hispánicas", instagram: "ca.letrasuc", consejeria: "Bárbara Sofía Cortés Milla", subconsejeria: "Trinidad Asunción Perez Araya" },
+  { carrera: "Letras Inglesas", instagram: "ca.letrasuc", consejeria: "María Graciela Soto", subconsejeria: "Colomba Ponce" },
+  { carrera: "Matemáticas", instagram: "ca.fmat_uc", consejeria: "Victor Polo", subconsejeria: "Joaquín Cordova" },
+  { carrera: "Medicina", instagram: "camedicinauc", consejeria: "Clemente Cisternas", subconsejeria: "Camila Gonzalez" },
+  { carrera: "Medicina Veterinaria", instagram: "cemvetuc", consejeria: "", subconsejeria: "" },
+  { carrera: "Música", instagram: "ceem_uc", consejeria: "Cristián Urbina", subconsejeria: "" },
+  { carrera: "Nutrición y Dietética", instagram: "consejerinutricionuc", consejeria: "Guiliana Olavarria", subconsejeria: "Antonia Spichiger" },
+  { carrera: "Odontología", instagram: "ca_odontouc", consejeria: "Emilia Nuñez", subconsejeria: "Elisa Rojas" },
+  { carrera: "Pedagogía Ed. Básica", instagram: "cape_uc", consejeria: "Erika Saavedra", subconsejeria: "Pauli Macaya" },
+  { carrera: "Pedagogía Ed. Media", instagram: "capem_uc", consejeria: "Ivania Chacon", subconsejeria: "Katia (SubCA Biología)" },
+  { carrera: "Pedagogía Ed. Parvularia", instagram: "capep.uc", consejeria: "María Jesús León Urrutia", subconsejeria: "Macarena Leiva" },
+  { carrera: "Pedagogía en Ed. Especial", instagram: "cadee.uc", consejeria: "Katalina Sanhueza", subconsejeria: "Sofía Muñoz" },
+  { carrera: "Pedagogía en Ed. Física", instagram: "caefi.uc", consejeria: "Nadine Álvarez", subconsejeria: "Bruno Larco / Matias Galvez" },
+  { carrera: "Pedagogía en Inglés", instagram: "capei.uc", consejeria: "Benjamin Sandaña", subconsejeria: "Valentina Espinoza" },
+  { carrera: "Periodismo", instagram: "racperiodismo", consejeria: "Diego Valenzuela", subconsejeria: "Celeste Elgueta" },
+  { carrera: "Psicología", instagram: "consejeria_psicouc", consejeria: "Fernanda Pérez Vielma", subconsejeria: "Amanda Cantillano" },
+  { carrera: "Publicidad", instagram: "pucblicidad", consejeria: "Moises Diaz", subconsejeria: "Sofía Lastra" },
+  { carrera: "Química", instagram: "caquifuc", consejeria: "Francisca Alvarez", subconsejeria: "Cris de la Jara" },
+  { carrera: "Química y Farmacia", instagram: "caquifuc", consejeria: "Marsella Rojas", subconsejeria: "Tomas Pablo Mondaca Burgos" },
+  { carrera: "Sociología", instagram: "ca_sociologiauc", consejeria: "Matías De Ruyt", subconsejeria: "Diego Arancibia" },
+  { carrera: "Teología", instagram: "cet.uc", consejeria: "Lukas Schneider", subconsejeria: "" },
+  { carrera: "Terapia Ocupacional", instagram: "consejeria.a_touc", consejeria: "Catalina Díaz Cornejo", subconsejeria: "Constanza Sandoval" },
+  { carrera: "Trabajo Social", instagram: "cats.uc_", consejeria: "Catalina González", subconsejeria: "Gabriela López" },
+  { carrera: "Villarrica", instagram: "cev_uc", consejeria: "Christell Flores Sepúlveda", subconsejeria: "" },
+];
+---
+
+<Layout title="Representación" description="Conoce las consejerías académicas de cada carrera UC y sus representantes.">
+
+  <!-- Header -->
+  <section class="py-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">Representación</h1>
+      <p class="text-white/80 text-lg">Consejerías académicas de cada carrera UC y sus representantes 2026.</p>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 py-12">
+
+    <!-- Search -->
+    <div class="mb-8">
+      <input
+        id="search-carrera"
+        type="text"
+        placeholder="Buscar carrera..."
+        class="w-full max-w-sm px-4 py-2 rounded-xl border border-gray-200 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+      />
+    </div>
+
+    <!-- Cards grid -->
+    <div id="carreras-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {carreras.map(({ carrera, instagram, consejeria, subconsejeria }) => (
+        <div
+          class="carrera-card flex flex-col gap-3 px-4 py-4 rounded-2xl border border-gray-100 shadow-sm bg-white hover:shadow-md transition-shadow"
+          data-carrera={carrera.toLowerCase()}
+        >
+          <!-- Career name -->
+          <p class="text-sm font-bold text-gray-800 leading-snug">{carrera}</p>
+
+          <!-- Consejeros -->
+          {consejeria && (
+            <div class="flex flex-col gap-1 text-xs text-gray-500">
+              <div class="flex items-start gap-1.5">
+                <span class="mt-0.5 shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-[9px] font-bold" style="background: #364FAB;">C</span>
+                <span>{consejeria}</span>
+              </div>
+              {subconsejeria && (
+                <div class="flex items-start gap-1.5">
+                  <span class="mt-0.5 shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-[9px] font-bold" style="background: #8452B1;">S</span>
+                  <span>{subconsejeria}</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          <!-- Instagram -->
+          <a
+            href={`https://instagram.com/${instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto self-start flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg transition-colors hover:opacity-80"
+            style="color: #8452B1; background: #F5EFF9;"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+            @{instagram}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p id="no-results" class="hidden text-center text-gray-400 text-sm py-8">No se encontraron resultados.</p>
+
+  </div>
+</Layout>
+
+<script>
+  const searchInput = document.getElementById("search-carrera") as HTMLInputElement;
+  const cards = document.querySelectorAll<HTMLElement>(".carrera-card");
+  const noResults = document.getElementById("no-results");
+
+  searchInput?.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+    let visible = 0;
+    cards.forEach((card) => {
+      const match = !q || card.dataset.carrera!.includes(q);
+      card.classList.toggle("hidden", !match);
+      if (match) visible++;
+    });
+    noResults?.classList.toggle("hidden", visible > 0);
+  });
+</script>
