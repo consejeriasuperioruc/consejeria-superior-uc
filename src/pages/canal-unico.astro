@@ -15,17 +15,10 @@ const temaColor: Record<string, string> = {
 
 const urgentes = [
   {
-    tema: "Salud y seguridad",
-    situacion: "¿Necesitas apoyo urgente en salud física, mental, de seguridad o infraestructura?",
-    servicio: "UC Emergencias",
-    contacto: ["Anexos UC: 5000", "Celular: +56 955045000"],
-    url: "https://www.uc.cl/emergencias",
-  },
-  {
-    tema: "Salud Mental",
-    situacion: "¿Estás en una crisis o emergencia de salud mental?",
-    servicio: "UC Emergencias + Línea *4141",
-    contacto: ["Anexos UC: 5000", "Celular: +56 955045000", "Fuera del campus: *4141 (24/7, gratuita)"],
+    tema: ["Salud General", "Seguridad"],
+    situacion: "¿Necesitas apoyo urgente en salud física, mental, de seguridad o infraestructura? ¿Estás en una crisis o emergencia de salud mental?",
+    servicio: "UC Emergencias + Línea *4141 para salud mental",
+    contacto: ["Anexos UC: 5000", "Celular: +56 955045000", "Fuera del campus salud mental: *4141 (24/7, gratuita)"],
     url: "https://www.uc.cl/emergencias",
   },
 ];
@@ -53,25 +46,11 @@ const otras = [
     url: "https://secretariageneral.uc.cl/realiza-una-denuncia",
   },
   {
-    tema: "Salud General",
-    situacion: "¿Necesitas información sobre servicios de salud mental, dental o física (no urgente)?",
+    tema: ["Salud General", "Académico"],
+    situacion: "¿Necesitas información sobre servicios de salud mental, dental o física (no urgente)? ¿Sobre suspensión académica por motivos de salud?",
     servicio: "DAE Salud y Bienestar Estudiantil",
     contacto: ["saludybienestar@uc.cl", "Fono: 9-55045700", "@saludybienestaruc"],
     url: "https://asuntosestudiantiles.uc.cl/salud-mental/suspension-academica-por-motivos-de-salud/",
-  },
-  {
-    tema: "Académico",
-    situacion: "¿Necesitas información sobre suspensión académica por motivos de salud?",
-    servicio: "DAE Salud y Bienestar Estudiantil",
-    contacto: ["saludybienestar@uc.cl", "Fono: 9-55045700"],
-    url: "https://asuntosestudiantiles.uc.cl/salud-mental/suspension-academica-por-motivos-de-salud/",
-  },
-  {
-    tema: "Académico",
-    situacion: "¿Tienes preocupaciones por tu rendimiento académico o vocación profesional?",
-    servicio: "CARA — Centro de Apoyo al Rendimiento Académico",
-    contacto: ["cara@uc.cl", "Fono: 955047582", "Edificio Aulas Lassen, Subterráneo", "@desarrolloestudiantiluc"],
-    url: "https://asuntosestudiantiles.uc.cl/cara",
   },
   {
     tema: "Socioeconómico",
@@ -89,7 +68,7 @@ const otras = [
   },
   {
     tema: "Académico",
-    situacion: "¿Necesitas apoyo relacionado con discapacidad?",
+    situacion: "¿Necesitas acompañamiento académico y/o ajustes PIANE?",
     servicio: "Dirección de Aprendizaje y Acompañamiento Academico — Ajustes razonables y discapacidad",
     contacto: ["+56 9 55047655", "Edificio Pataguas, Campus San Joaquín"],
     url: "https://inclusion.uc.cl/piane-uc/",
@@ -118,7 +97,7 @@ const otras = [
 ];
 
 const allItems = [...urgentes.map(i => ({ ...i, urgente: true })), ...otras.map(i => ({ ...i, urgente: false }))];
-const temas = [...new Set(allItems.map(i => i.tema))];
+const temas = [...new Set(allItems.flatMap(i => Array.isArray(i.tema) ? i.tema : [i.tema]))];
 ---
 
 <Layout title="Canal Único de Ayuda" description="Encuentra el servicio de apoyo que necesitas en la UC.">
@@ -155,13 +134,16 @@ const temas = [...new Set(allItems.map(i => i.tema))];
     <!-- Cards -->
     <div class="grid sm:grid-cols-2 gap-4">
       {allItems.map(({ tema, situacion, servicio, contacto, url, urgente }) => {
-        const color = temaColor[tema] ?? "#6B7280";
+        const temaList = Array.isArray(tema) ? tema : [tema];
+        const color = temaColor[temaList[0]] ?? "#6B7280";
         return (
           <a href={url} target="_blank" rel="noopener noreferrer"
-            data-tema={tema}
+            data-temas={JSON.stringify(temaList)}
             class="filter-card group flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2 py-0.5 rounded-full text-xs font-semibold text-white" style={`background: ${color};`}>{tema}</span>
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              {temaList.map(t => (
+                <span class="px-2 py-0.5 rounded-full text-xs font-semibold text-white" style={`background: ${temaColor[t] ?? "#6B7280"};`}>{t}</span>
+              ))}
               {urgente && <span class="px-2 py-0.5 rounded-full text-xs font-semibold text-white" style="background: #EF4444;">Urgente</span>}
             </div>
             <p class="text-sm text-gray-600 leading-relaxed mb-3 flex-1">{situacion}</p>
@@ -188,7 +170,8 @@ const temas = [...new Set(allItems.map(i => i.tema))];
       btn.addEventListener("click", () => {
         const tema = btn.dataset.filter!;
         document.querySelectorAll<HTMLElement>(".filter-card").forEach(card => {
-          card.style.display = (tema === "all" || card.dataset.tema === tema) ? "" : "none";
+          const cardTemas: string[] = JSON.parse(card.dataset.temas || "[]");
+          card.style.display = (tema === "all" || cardTemas.includes(tema)) ? "" : "none";
         });
         document.querySelectorAll<HTMLElement>(".filter-btn").forEach(b => {
           const active = b.dataset.filter === tema;
