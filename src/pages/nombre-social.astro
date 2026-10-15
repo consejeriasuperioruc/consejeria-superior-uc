@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const pasos = [
+  {
+    fase: "Fase 1",
+    titulo: "Envía una solicitud",
+    descripcion: "Escribe una solicitud al correo institucional de la Dirección de Equidad de Género.",
+    email: "nombresocialuc@uc.cl",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
+    accent: "#364FAB",
+  },
+  {
+    fase: "Fase 2",
+    titulo: "Encuentro informativo",
+    descripcion: "Tendrás un encuentro informativo con la Dirección de Equidad de Género.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>`,
+    accent: "#5D51AE",
+  },
+  {
+    fase: "Fase 3",
+    titulo: "Actualización de registros",
+    descripcion: "Se actualiza tu nombre social en los registros internos de la UC.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+    accent: "#8452B1",
+  },
+  {
+    fase: "Fase 4",
+    titulo: "Notificación final",
+    descripcion: "Recibirás una notificación final del procedimiento.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>`,
+    accent: "#BF7CF9",
+  },
+];
+---
+
+<Layout title="Transición paso a paso" description="Cómo hacer uso de tu nombre social en la UC, paso a paso.">
+
+  <!-- Header -->
+  <section class="py-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #364FAB 0%, #8452B1 100%);">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">Transición paso a paso</h1>
+      <p class="text-white/80 text-lg">Uso de nombre social en la UC</p>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 py-12">
+
+    <!-- Intro -->
+    <p class="text-gray-600 leading-relaxed mb-4">
+      La UC cuenta con un procedimiento que permite a la comunidad estudiantil utilizar su <strong class="text-gray-800">Nombre Social</strong>, promoviendo un trato respetuoso hacia la identidad de género de cada persona.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-12">
+      Si deseas iniciar este proceso, sigue los siguientes pasos:
+    </p>
+
+    <!-- Steps -->
+    <ol class="relative space-y-6">
+      <div class="absolute left-6 top-6 bottom-6 w-px bg-gray-200" aria-hidden="true"></div>
+      {pasos.map(({ fase, titulo, descripcion, email, icon, accent }) => (
+        <li class="relative flex gap-5">
+          <div class="relative z-10 shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md" style={`background: ${accent};`} set:html={icon} />
+          <div class="flex-1 rounded-2xl border border-gray-100 bg-white shadow-sm p-5">
+            <p class="text-xs font-semibold uppercase tracking-wider mb-1" style={`color: ${accent};`}>{fase}</p>
+            <h2 class="font-bold text-gray-800 mb-1">{titulo}</h2>
+            <p class="text-sm text-gray-600 leading-relaxed">{descripcion}</p>
+            {email && (
+              <a href={`mailto:${email}`} class="inline-block mt-3 text-sm font-semibold hover:underline" style={`color: ${accent};`}>
+                {email}
+              </a>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="text-sm text-gray-500 mt-8">
+      ¿Tienes dudas? Contacta a la Dirección de Equidad de Género: Anexo UC 9263 · Celular +569 5504 9263 ·
+      <a href="https://equidaddegenero.uc.cl/observatorio/nombre-social/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline" style="color: #364FAB;">Más información</a>
+    </p>
+
+    <!-- Diversidad sexual -->
+    <section class="mt-14 rounded-2xl p-6 border border-gray-100" style="background: #F5EFF9;">
+      <h2 class="text-lg font-bold mb-3" style="color: #8452B1;">Programa de Acompañamiento a la Diversidad Sexual</h2>
+      <p class="text-sm text-gray-600 leading-relaxed mb-4">
+        La UC también tiene un Programa de Acompañamiento a la Diversidad Sexual, cuyo objetivo no sólo es promover el desarrollo de una comunidad universitaria inclusiva, sino también ofrecer espacios seguros para abordar inquietudes o dificultades relacionadas a la vivencia de la diversidad sexual en el estudiantado.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="mailto:diversidadsexual@uc.cl" class="px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105" style="background: #8452B1;">
+          diversidadsexual@uc.cl
+        </a>
+        <a href="https://asuntosestudiantiles.uc.cl/salud-mental/acompanamiento-a-la-diversidad/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold border transition-all hover:scale-105" style="color: #8452B1; border-color: #8452B1;">
+          Visitar sitio del programa
+        </a>
+      </div>
+    </section>
+
+    <p class="text-center text-gray-500 text-sm mt-12 max-w-xl mx-auto">
+      Te invitamos a seguir construyendo una UC más respetuosa y equitativa, promoviendo siempre el trato respetuoso hacia la identidad de género de cada persona.
+    </p>
+    <p class="text-center text-xs text-gray-400 mt-4">Fuente: Dirección de Equidad de Género UC</p>
+  </div>
+
+</Layout>
